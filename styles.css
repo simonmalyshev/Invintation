@@ -203,8 +203,8 @@
         /* Section Headings */
         .section__heading {
             font-family: 'Montserrat', 'Arial', sans-serif;
-            font-size: 45px;
-            font-weight: 700;
+            font-size: 60px;
+            font-weight: 500;
             letter-spacing: 6px;
             text-transform: uppercase;
             text-align: center;
@@ -518,13 +518,13 @@
         }
 
         .venue__name {
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 20px;
+            font-weight: 400;
             margin-bottom: 8px;
         }
 
         .venue__address {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 400;
             color: #666;
             line-height: 1.8;
@@ -777,7 +777,7 @@
             }
 
             .section__heading {
-                font-size: 24px;
+                font-size: 40px;
                 letter-spacing: 4px;
             }
 

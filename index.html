@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <meta name="color-scheme" content="only light">
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
     <!-- ============================================
@@ -21,8 +23,7 @@
         <div class="hero__container">
             <img class="hero__bg anim-fadein" style="animation-delay: 0s;"
                 src="source-assets/images/tild3030-6563-4035-b261-646238646232_IMG_4398.jpg"
-                alt="Семен и Настя — совместное фото"
-            >
+                alt="Семен и Настя — совместное фото">
             <div class="hero__overlay anim-fadein" style="animation-delay: 0s;">
                 <div class="hero__content">
                     <!-- ТЕКСТ: Измените на свои имена -->
@@ -33,10 +34,8 @@
             </div>
             <!-- ФОТО: Замените на логотип (белый, прозрачный PNG). Рекомендуемый размер: 511x246 px -->
             <div class="hero__logo anim-fadein" style="animation-delay: 0.2s;">
-                <img
-                    src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png"
-                    alt="Декоративный логотип"
-                >
+                <img src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png"
+                    alt="Декоративный логотип">
             </div>
         </div>
     </section>
@@ -62,8 +61,10 @@
             </p>
 
             <!-- Decorative lines -->
-            <div class="invitation__decor-line invitation__decor-line--left anim-fadeinright anim-paused" style="animation-delay: 0s;"></div>
-            <div class="invitation__decor-line invitation__decor-line--right anim-fadeinleft anim-paused" style="animation-delay: 0s;"></div>
+            <div class="invitation__decor-line invitation__decor-line--left anim-fadeinright anim-paused"
+                style="animation-delay: 0s;"></div>
+            <div class="invitation__decor-line invitation__decor-line--right anim-fadeinleft anim-paused"
+                style="animation-delay: 0s;"></div>
 
             <!-- Calendar -->
             <div class="calendar-wrapper">
@@ -158,7 +159,8 @@
                  В текущей версии форма не отправляет данные (статический HTML).
                  Для интеграции с Google Sheets используйте Apps Script URL.
                  Для отправки на email — укажите action вашего бэкенда. -->
-            <form class="rsvp__form anim-fadeinup anim-paused" style="animation-delay: 0.2s;" action="#" method="post" id="rsvpForm">
+            <form class="rsvp__form anim-fadeinup anim-paused" style="animation-delay: 0.2s;" action="#" method="post"
+                id="rsvpForm">
                 <!-- ТЕКСТ: Измените label поля "Имя" -->
                 <div class="form-group">
                     <label for="guestName">Ваше имя</label>
@@ -201,26 +203,46 @@
     <!-- ============================================
     SECTION 11: GIFT WISHES
     ============================================ -->
+
+    <section id="gift" class="section gift">
+        <div class="container">
+            <!-- ЗАГОЛОВОК: Пожелания -->
+            <h2 class="section__heading anim-fadeinup anim-paused" style="animation-delay: 0s;">Пожелания</h2>
+
+            <div class="gift__decor-line gift__decor-line--left anim-fadeinright anim-paused"
+                style="animation-delay: 0s;"></div>
+            <div class="gift__decor-line gift__decor-line--right anim-fadeinleft anim-paused"
+                style="animation-delay: 0s;"></div>
+
+            <!-- ТЕКСТ: Измените текст пожеланий -->
+            <p class="gift__text anim-fadeinup anim-paused" style="animation-delay: 0.2s;">
+                Самым лучшим подарком для нас будет ваше присутствие и улыбки на лицах. 
+                В связи с нашим отъездом сразу после свадьбы мы не сможем насладиться красотой букетов. 
+                Будем благодарны, если вы воздержитесь от цветов.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+    SECTION 12: SPACER
+    ============================================ -->
+    <div class="spacer"></div>
+
+    <!-- ============================================
+
+
        <!-- ============================================
     SECTION 13: FOOTER / DECORATIVE
     ============================================ -->
     <section id="footer" class="footer">
         <!-- ФОТО: Чёрная плашка с паттерном RTG (ваза/флористика). -->
         <div class="footer__bg anim-zoomin anim-paused" style="animation-delay: 0s;"
-             data-bg="source-assets/images/tild6537-6232-4665-b935-393764326233_RTG.jpg"></div>
+            data-bg="source-assets/images/tild6537-6232-4665-b935-393764326233_RTG.jpg"></div>
         <!-- ФОТО: Декоративные элементы поверх фона. Замените src на свои PNG -->
-        <img
-            class="footer__deco footer__deco--1 anim-zoomin anim-paused"
-            style="animation-delay: 0.3s;"
-            src="source-assets/images/tild3238-3535-4631-a362-356463356365_noroot.png"
-            alt="Декоративный элемент"
-        >
-        <img
-            class="footer__deco footer__deco--2 anim-zoomin anim-paused"
-            style="animation-delay: 0.5s;"
-            src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png"
-            alt="Декоративный элемент"
-        >
+        <img class="footer__deco footer__deco--1 anim-zoomin anim-paused" style="animation-delay: 0.3s;"
+            src="source-assets/images/tild3238-3535-4631-a362-356463356365_noroot.png" alt="Декоративный элемент">
+        <img class="footer__deco footer__deco--2 anim-zoomin anim-paused" style="animation-delay: 0.5s;"
+            src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png" alt="Декоративный элемент">
     </section>
 
     <!-- ============================================
@@ -228,4 +250,5 @@
     ============================================ -->
     <script src="script.js" defer></script>
 </body>
+
 </html>
