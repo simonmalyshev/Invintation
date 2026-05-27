@@ -137,7 +137,8 @@
 
             // ⚠️ ВСТАВЬТЕ СЮДА URL вашего Google Apps Script веб-приложения.
             // Инструкция: GOOGLE_SHEETS_SETUP.md (Шаг 3)
-            var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHzzF8FKIpDFdkdFO9zRmc4CXkQ0kliSu6JoL73z7rJ2VBfcM0xLYjY0zWqYwznSgC/exec';
+            // ВАЖНО: Используем JSONP (doGet), а не POST (doPost) — Google Script не отдаёт CORS-заголовки
+            var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPyb3Fw9TKFagF4Sv_XNO10Kibyxa0eiQk8uPvtwnBNuoVUlB8szipWK3AvfG9uqH_/exec';
 
             function initForm() {
                 var form = document.getElementById('rsvpForm');
@@ -176,20 +177,22 @@
                     feedback.style.color = '#555';
                     feedback.style.display = 'block';
 
-                    // Отправляем данные через fetch (POST, form-urlencoded, без CORS preflight)
+                    // JSONP — единственный надёжный способ обойти CORS у Google Apps Script.
+                    // Создаём динамический <script> с callback, скрипт вызывает функцию когда ответ придёт.
+                    var callbackName = 'jsonp_cb_' + Date.now();
                     var params = new URLSearchParams();
                     params.append('name', name);
                     params.append('status', statusValue);
                     params.append('comment', comment);
+                    params.append('callback', callbackName);
 
-                    fetch(APPS_SCRIPT_URL, {
-                        method: 'POST',
-                        body: params
-                    })
-                    .then(function(response) {
-                        return response.json();
-                    })
-                    .then(function(data) {
+                    // Создаём временную глобальную callback-функцию
+                    window[callbackName] = function(data) {
+                        // Убираем за собой
+                        delete window[callbackName];
+                        var scriptEl = document.getElementById(callbackName);
+                        if (scriptEl) scriptEl.parentNode.removeChild(scriptEl);
+
                         if (data.success) {
                             feedback.style.color = '#2a7d2a';
                             feedback.textContent = name + ', спасибо за ответ! Вы (' + statusText + ').';
@@ -209,12 +212,13 @@
                                 feedback.style.display = 'none';
                             }, 3000);
                         }, 2000);
-                    })
-                    .catch(function(error) {
-                        feedback.style.color = '#c00';
-                        feedback.textContent = 'Ошибка соединения. Проверьте интернет и попробуйте снова.';
-                        feedback.style.display = 'block';
-                    });
+                    };
+
+                    // Создаём <script> элемент — это и есть JSONP-запрос
+                    var script = document.createElement('script');
+                    script.id = callbackName;
+                    script.src = APPS_SCRIPT_URL + '?' + params.toString();
+                    document.body.appendChild(script);
                 });
             }
 

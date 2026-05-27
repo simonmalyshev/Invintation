@@ -518,20 +518,20 @@
         }
 
         .venue__name {
-            font-size: 20px;
-            font-weight: 400;
+            font-size: 18px;
+            font-weight: 300;
             margin-bottom: 8px;
         }
 
         .venue__address {
-            font-size: 15px;
-            font-weight: 400;
+            font-size: 18px;
+            font-weight: 300;
             color: #666;
             line-height: 1.8;
         }
 
         .venue__divider {
-            width: 150px;
+            width: 300px;
             height: 1px;
             background-color: #000;
             margin: 30px auto;
