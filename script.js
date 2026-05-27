@@ -195,7 +195,7 @@
 
                         if (data.success) {
                             feedback.style.color = '#2a7d2a';
-                            feedback.textContent = name + ', спасибо за ответ! Вы (' + statusText + ').';
+                            feedback.textContent = name + ', спасибо за ответ!';
                             if (comment) {
                                 feedback.textContent += ' Комментарий получен.';
                             }
@@ -223,6 +223,42 @@
             }
 
             /* --------------------------------------------------
+               SCROLL INDICATOR — скрыть стрелку при скролле
+               -------------------------------------------------- */
+            function initScrollIndicator() {
+                var indicator = document.getElementById('scrollIndicator');
+                if (!indicator) return;
+
+                var hidden = false;
+
+                function hideIndicator() {
+                    if (hidden) return;
+                    indicator.style.opacity = '0';
+                    hidden = true;
+                    window.removeEventListener('scroll', onScroll);
+                }
+
+                function onScroll() {
+                    if (window.scrollY > 10) {
+                        hideIndicator();
+                    }
+                }
+
+                // Показываем через 2 секунды после загрузки
+                setTimeout(function() {
+                    if (!hidden) {
+                        indicator.style.opacity = '1';
+                    }
+                    // Если пользователь уже проскроллил за эти 2 секунды — скрываем
+                    if (window.scrollY > 10) {
+                        hideIndicator();
+                    }
+                }, 2000);
+
+                window.addEventListener('scroll', onScroll, { passive: true });
+            }
+
+            /* --------------------------------------------------
                INIT
                -------------------------------------------------- */
             document.addEventListener('DOMContentLoaded', function() {
@@ -230,6 +266,7 @@
                 initAnimations();
                 initCalendar();
                 initForm();
+                initScrollIndicator();
             });
 
         })();

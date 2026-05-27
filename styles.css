@@ -21,6 +21,26 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
+        /* ============================================
+               SCROLL INDICATOR KEYFRAMES
+            ============================================ */
+        @keyframes scrollBounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) rotate(45deg);
+            }
+            40% {
+                transform: translateY(-10px) rotate(45deg);
+            }
+            60% {
+                transform: translateY(-5px) rotate(45deg);
+            }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
         a {
             color: #ff8562;
             text-decoration: none;
@@ -195,11 +215,6 @@
             background-color: #ffffff;
         }
 
-        .spacer {
-            padding: 20px 20px;
-            background-color: #ffffff;
-        }
-
         /* Section Headings */
         .section__heading {
             font-family: 'Montserrat', 'Arial', sans-serif;
@@ -209,6 +224,34 @@
             text-transform: uppercase;
             text-align: center;
             color: #000000;
+            margin-bottom: 16px;
+            position: relative;
+            display: inline-block;
+            padding: 0 40px;
+        }
+
+        /* Декоративные полоски слева и справа от заголовка */
+        .section__heading::before,
+        .section__heading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 100px;
+            height: 1px;
+            background-color: #000000;
+            transform: translateY(-50%);
+        }
+
+        .section__heading::before {
+            right: 100%;
+        }
+
+        .section__heading::after {
+            left: 100%;
+        }
+
+        .section__heading-wrapper {
+            text-align: center;
             margin-bottom: 16px;
         }
 
@@ -229,8 +272,6 @@
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh;
-            min-height: 550px;
             overflow: hidden;
             background-color: #ffffff;
             display: flex;
@@ -312,6 +353,46 @@
             height: auto;
         }
 
+        /* Scroll Indicator — анимированная стрелка вниз */
+        .hero__scroll-indicator {
+            position: absolute;
+            bottom: 160px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            cursor: pointer;
+        }
+
+        .hero__scroll-indicator--hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .hero__scroll-text {
+            font-size: 20px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ffffff;
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        .hero__scroll-arrow {
+            display: block;
+            width: 72px;
+            height: 72px;
+            border-right: 4px solid #ffffff;
+            border-bottom: 4px solid #ffffff;
+            transform: rotate(45deg);
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
         /* ============================================
                SECTION 3: INVITATION / DATE / VENUE
             ============================================ */
@@ -328,21 +409,6 @@
             line-height: 1.8;
         }
 
-        .invitation__decor-line {
-            position: absolute;
-            top: 46px;
-            height: 1px;
-            width: 230px;
-            background-color: #000000;
-        }
-
-        .invitation__decor-line--left {
-            left: 20px;
-        }
-
-        .invitation__decor-line--right {
-            right: 20px;
-        }
 
         /* Calendar Widget */
         .calendar-wrapper {
@@ -531,10 +597,11 @@
         }
 
         .venue__divider {
-            width: 300px;
+            width: 100%;
             height: 1px;
             background-color: #000;
             margin: 30px auto;
+            display: none;
         }
 
 
@@ -664,21 +731,6 @@
             line-height: 1.8;
         }
 
-        .gift__decor-line {
-            position: absolute;
-            top: 46px;
-            height: 1px;
-            width: 230px;
-            background-color: #000000;
-        }
-
-        .gift__decor-line--left {
-            left: 20px;
-        }
-
-        .gift__decor-line--right {
-            right: 20px;
-        }
 
         /* ============================================
                SECTION 13: FOOTER / CLOSING
@@ -740,9 +792,13 @@
                 padding: 14px 20px;
             }
 
-            .invitation__decor-line,
-            .gift__decor-line {
+            .section__heading::before,
+            .section__heading::after {
                 display: none;
+            }
+
+            .venue__divider {
+                display: block;
             }
 
             .invitation__text {

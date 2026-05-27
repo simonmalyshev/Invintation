@@ -37,13 +37,14 @@
                 <img src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png"
                     alt="Декоративный логотип">
             </div>
+
+            <!-- Scroll indicator — подсказывает листать вниз -->
+            <div class="hero__scroll-indicator" id="scrollIndicator">
+                <span class="hero__scroll-text">Листайте</span>
+                <span class="hero__scroll-arrow"></span>
+            </div>
         </div>
     </section>
-
-    <!-- ============================================
-    SECTION 2: SPACER
-    ============================================ -->
-    <div class="spacer"></div>
 
     <!-- ============================================
     SECTION 3: INVITATION / DATE / VENUE
@@ -60,11 +61,6 @@
                 свадьбу, которая состоится:
             </p>
 
-            <!-- Decorative lines -->
-            <div class="invitation__decor-line invitation__decor-line--left anim-fadeinright anim-paused"
-                style="animation-delay: 0s;"></div>
-            <div class="invitation__decor-line invitation__decor-line--right anim-fadeinleft anim-paused"
-                style="animation-delay: 0s;"></div>
 
             <!-- Calendar -->
             <div class="calendar-wrapper">
@@ -132,14 +128,10 @@
                 <div class="venue__address anim-fadeinup anim-paused" style="animation-delay: 0.4s;">
                     площадь Свободы 1
                 </div>
-                <div class="venue__divider anim-fadeinleft anim-paused" style="animation-delay: 0.5s;"></div>
             </div>
+            <div class="venue__divider anim-fadeinright anim-paused" style="animation-delay: 0.5s;"></div>
         </div>
     </section>
-
-    <!-- ============================================
-    SECTION 4: SPACER
-    ============================================ -->
 
     <!-- ============================================
     SECTION 9: RSVP / CONFIRMATION FORM
@@ -151,7 +143,7 @@
 
             <!-- ТЕКСТ: Измените текст приглашения к заполнению формы -->
             <p class="rsvp__subtitle anim-fadeinup anim-paused" style="animation-delay: 0.1s;">
-                Пожалуйста, подтвердите своё присутствие до 1 августа 2026 года
+                Пожалуйста, подтвердите своё присутствие до 10 июня 2026 года
             </p>
 
             <!-- ФОРМА: Данные отправляются через JSONP в Google Sheets (см. GOOGLE_SHEETS_SETUP.md).
@@ -194,23 +186,15 @@
     </section>
 
     <!-- ============================================
-    SECTION 10: SPACER
-    ============================================ -->
-                    <div class="venue__divider anim-fadeinright anim-paused" style="animation-delay: 0.2s;"></div>
-
-    <!-- ============================================
     SECTION 11: GIFT WISHES
     ============================================ -->
 
     <section id="gift" class="section gift">
+        <div class="venue__divider anim-fadeinright anim-paused" style="animation-delay: 0.2s;"></div>
         <div class="container">
             <!-- ЗАГОЛОВОК: Пожелания -->
             <h2 class="section__heading anim-fadeinup anim-paused" style="animation-delay: 0s;">Пожелания</h2>
 
-            <div class="gift__decor-line gift__decor-line--left anim-fadeinright anim-paused"
-                style="animation-delay: 0s;"></div>
-            <div class="gift__decor-line gift__decor-line--right anim-fadeinleft anim-paused"
-                style="animation-delay: 0s;"></div>
 
             <!-- ТЕКСТ: Измените текст пожеланий -->
             <p class="gift__text anim-fadeinup anim-paused" style="animation-delay: 0.2s;">
@@ -220,11 +204,6 @@
             </p>
         </div>
     </section>
-
-    <!-- ============================================
-    SECTION 12: SPACER
-    ============================================ -->
-    <div class="spacer"></div>
 
     <!-- ============================================
 
