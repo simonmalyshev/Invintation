@@ -167,7 +167,7 @@
         @keyframes zoomIn {
             0% {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0.92);
             }
             100% {
                 opacity: 1;
@@ -193,7 +193,7 @@
         }
 
         .anim-zoomin {
-            animation: zoomIn 1.2s ease-out both;
+            animation: zoomIn 3.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
         }
 
         /* Paused state — элемент удерживается в начальном кадре анимации (opacity: 0) */
@@ -755,6 +755,8 @@
             background-position: center center;
             background-size: cover;
             background-repeat: no-repeat;
+            opacity: 0;
+            transform: scale(0.92);
         }
 
         .footer__deco {
@@ -762,6 +764,8 @@
             width: 200px;
             height: auto;
             z-index: 2;
+            opacity: 0;
+            transform: scale(0.92);
         }
 
         .footer__deco--1 {
