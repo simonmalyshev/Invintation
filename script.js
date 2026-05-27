@@ -137,7 +137,7 @@
 
             // ⚠️ ВСТАВЬТЕ СЮДА URL вашего Google Apps Script веб-приложения.
             // Инструкция: GOOGLE_SHEETS_SETUP.md (Шаг 3)
-            var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+            var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwHzzF8FKIpDFdkdFO9zRmc4CXkQ0kliSu6JoL73z7rJ2VBfcM0xLYjY0zWqYwznSgC/exec';
 
             function initForm() {
                 var form = document.getElementById('rsvpForm');
