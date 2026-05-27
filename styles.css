@@ -233,6 +233,24 @@
             min-height: 550px;
             overflow: hidden;
             background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        /* Внутренний контейнер, размер которого в точности совпадает
+           с rendered-размером фото при object-fit: contain.
+           Формула: width = min(100vw, 100vh * 1680/2324),
+                    height = min(100vh, 100vw * 2324/1680).
+           На широких экранах контейнер ограничен по высоте (100vh),
+           на узких — по ширине (100vw). */
+        .hero__container {
+            position: relative;
+            width: min(100vw, calc(100vh * (1680 / 2324)));
+            height: min(100vh, calc(100vw * (2324 / 1680)));
+            overflow: hidden;
+            flex: 0 0 auto;
         }
 
         .hero__bg {
@@ -241,8 +259,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            object-position: center;
+            object-fit: cover;
         }
 
         .hero__overlay {
@@ -259,12 +276,8 @@
             color: #ffffff;
         }
 
-        /* Hero content sub-block — ограничивает текст шириной фото (1680:2324 ≈ 0.723).
-           На десктопе фото с object-fit: contain имеет ширину = 100vh * 0.723.
-           На мобильных (где 100vh * 0.723 > 100vw) — ширина равна ширине вьюпорта. */
         .hero__content {
             width: 100%;
-            max-width: calc(100vh * (1680 / 2324));
             padding: 40px 20px;
         }
 
