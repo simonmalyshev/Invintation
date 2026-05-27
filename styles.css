@@ -200,6 +200,29 @@
             background-color: #ffffff;
         }
 
+        /* Section Headings */
+        .section__heading {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-size: 45px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            text-align: center;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+
+        .section__subheading {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            color: #000000;
+            margin-bottom: 24px;
+        }
+
         /* ============================================
                SECTION 1: HERO
             ============================================ */
@@ -501,14 +524,6 @@
             text-align: center;
         }
 
-        .rsvp__heading {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
         .rsvp__subtitle {
             font-size: 18px;
             font-weight: 400;
@@ -661,8 +676,8 @@
             left: calc(50% - 600px + 243px);
             width: 715px;
             height: 550px;
-            background-color: #000000;
-            border: 5px solid #000000;
+            background-color: #ffffff;
+            border: 5px solid #ffffff;
             background-image: url('source-assets/images/tild6537-6232-4665-b935-393764326233_RTG.jpg');
             background-position: center center;
             background-size: cover;
@@ -740,8 +755,14 @@
                 min-width: 240px;
             }
 
-            .rsvp__heading {
-                font-size: 22px;
+            .section__heading {
+                font-size: 24px;
+                letter-spacing: 4px;
+            }
+
+            .section__subheading {
+                font-size: 18px;
+                letter-spacing: 3px;
             }
         }
 
@@ -760,23 +781,34 @@
             .spacer {
                 padding: 10px 16px;
             }
-
+    
             .container {
                 padding: 0 16px;
             }
-
+    
             /* Hero */
             .hero__names {
                 letter-spacing: 4px;
             }
-
+    
             .hero__subtitle {
                 letter-spacing: 3px;
             }
-
+    
             .hero__logo {
                 width: 140px;
                 bottom: 30px;
+            }
+    
+            /* Section Headings */
+            .section__heading {
+                font-size: 22px;
+                letter-spacing: 4px;
+            }
+    
+            .section__subheading {
+                font-size: 16px;
+                letter-spacing: 3px;
             }
 
             /* Invitation */
@@ -877,6 +909,16 @@
                RESPONSIVE: VERY SMALL (320px)
             ============================================ */
         @media screen and (max-width: 360px) {
+            .section__heading {
+                font-size: 18px;
+                letter-spacing: 3px;
+            }
+
+            .section__subheading {
+                font-size: 14px;
+                letter-spacing: 2px;
+            }
+
             .calendar-month__day {
                 font-size: 12px;
                 padding: 6px 2px;
