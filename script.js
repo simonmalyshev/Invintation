@@ -132,8 +132,13 @@
             }
 
             /* --------------------------------------------------
-               3. FORM HANDLING
+               3. FORM HANDLING — отправка в Google Sheets
                -------------------------------------------------- */
+
+            // ⚠️ ВСТАВЬТЕ СЮДА URL вашего Google Apps Script веб-приложения.
+            // Инструкция: GOOGLE_SHEETS_SETUP.md (Шаг 3)
+            var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
             function initForm() {
                 var form = document.getElementById('rsvpForm');
                 var feedback = document.getElementById('formFeedback');
@@ -145,7 +150,7 @@
 
                     // Collect data
                     var name = document.getElementById('guestName').value.trim();
-                    var status = form.querySelector('input[name="status"]:checked');
+                    var statusEl = form.querySelector('input[name="status"]:checked');
                     var comment = document.getElementById('guestComment').value.trim();
 
                     if (!name) {
@@ -155,25 +160,61 @@
                         return;
                     }
 
-                    var statusText = status ? (status.value === 'yes' ? 'буду' : 'не смогу') : 'не указано';
-
-                    // Show confirmation
-                    // ФОРМА: В текущей версии данные не отправляются на сервер.
-                    // Для отправки замените action формы на URL вашего обработчика.
-                    feedback.style.color = '#2a7d2a';
-                    feedback.textContent = name + ', спасибо за ответ! Вы (' + statusText + ').';
-                    if (comment) {
-                        feedback.textContent += ' Комментарий получен.';
+                    // Проверка, вставил ли пользователь реальный URL
+                    if (APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID') !== -1) {
+                        feedback.textContent = 'Ошибка: не настроен URL Google Apps Script. См. GOOGLE_SHEETS_SETUP.md';
+                        feedback.style.display = 'block';
+                        feedback.style.color = '#c00';
+                        return;
                     }
+
+                    var statusValue = statusEl ? statusEl.value : '';
+                    var statusText = statusEl ? (statusEl.value === 'yes' ? 'буду' : 'не смогу') : 'не указано';
+
+                    // Показываем "отправка..."
+                    feedback.textContent = 'Отправка...';
+                    feedback.style.color = '#555';
                     feedback.style.display = 'block';
 
-                    // Reset form after delay
-                    setTimeout(function() {
-                        form.reset();
+                    // Отправляем данные через fetch (POST, form-urlencoded, без CORS preflight)
+                    var params = new URLSearchParams();
+                    params.append('name', name);
+                    params.append('status', statusValue);
+                    params.append('comment', comment);
+
+                    fetch(APPS_SCRIPT_URL, {
+                        method: 'POST',
+                        body: params
+                    })
+                    .then(function(response) {
+                        return response.json();
+                    })
+                    .then(function(data) {
+                        if (data.success) {
+                            feedback.style.color = '#2a7d2a';
+                            feedback.textContent = name + ', спасибо за ответ! Вы (' + statusText + ').';
+                            if (comment) {
+                                feedback.textContent += ' Комментарий получен.';
+                            }
+                        } else {
+                            feedback.style.color = '#c00';
+                            feedback.textContent = 'Ошибка при отправке. Попробуйте ещё раз.';
+                        }
+                        feedback.style.display = 'block';
+
+                        // Reset form after delay
                         setTimeout(function() {
-                            feedback.style.display = 'none';
-                        }, 3000);
-                    }, 2000);
+                            form.reset();
+                            setTimeout(function() {
+                                feedback.style.display = 'none';
+                            }, 3000);
+                        }, 2000);
+                    })
+                    .catch(function(error) {
+                        feedback.style.color = '#c00';
+                        feedback.textContent = 'Ошибка соединения. Проверьте интернет и попробуйте снова.';
+                        feedback.style.display = 'block';
+                    });
                 });
             }
 

@@ -155,10 +155,9 @@
                 Пожалуйста, подтвердите своё присутствие до 1 августа 2026 года
             </p>
 
-            <!-- ФОРМА: Для отправки данных на сервер замените action="..." на URL вашего обработчика.
-                 В текущей версии форма не отправляет данные (статический HTML).
-                 Для интеграции с Google Sheets используйте Apps Script URL.
-                 Для отправки на email — укажите action вашего бэкенда. -->
+            <!-- ФОРМА: Данные отправляются через JSONP в Google Sheets (см. GOOGLE_SHEETS_SETUP.md).
+                 Для настройки: создайте Google Sheets → Tools → Script Editor → вставьте код из GOOGLE_SHEETS_SETUP.md,
+                 разверните как Web App, скопируйте URL в script.js (переменная APPS_SCRIPT_URL). -->
             <form class="rsvp__form anim-fadeinup anim-paused" style="animation-delay: 0.2s;" action="#" method="post"
                 id="rsvpForm">
                 <!-- ТЕКСТ: Измените label поля "Имя" -->
