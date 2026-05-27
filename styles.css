@@ -257,11 +257,19 @@
             justify-content: center;
             text-align: center;
             color: #ffffff;
+        }
+
+        /* Hero content sub-block — ограничивает текст шириной фото (1680:2324 ≈ 0.723).
+           На десктопе фото с object-fit: contain имеет ширину = 100vh * 0.723.
+           На мобильных (где 100vh * 0.723 > 100vw) — ширина равна ширине вьюпорта. */
+        .hero__content {
+            width: 100%;
+            max-width: calc(100vh * (1680 / 2324));
             padding: 40px 20px;
         }
 
         .hero__names {
-            font-size: clamp(24px, 8vw, 40px);
+            font-size: clamp(24px, 8vw, 35px);
             font-weight: 700;
             letter-spacing: 8px;
             text-transform: uppercase;
