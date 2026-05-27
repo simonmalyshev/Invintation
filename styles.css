@@ -1,0 +1,890 @@
+        /* ============================================
+               RESET & BASE
+            ============================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #000000;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: #ff8562;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ============================================
+               FONTS — Montserrat (local)
+            ============================================ */
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 100;
+            src: url('source-assets/fonts/Montserrat-100.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 200;
+            src: url('source-assets/fonts/Montserrat-200.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 300;
+            src: url('source-assets/fonts/Montserrat-300.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            src: url('source-assets/fonts/Montserrat-400.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 500;
+            src: url('source-assets/fonts/Montserrat-500.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 600;
+            src: url('source-assets/fonts/Montserrat-600.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 700;
+            src: url('source-assets/fonts/Montserrat-700.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 800;
+            src: url('source-assets/fonts/Montserrat-800.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 900;
+            src: url('source-assets/fonts/Montserrat-900.ttf') format('truetype');
+            font-display: swap;
+        }
+
+        /* ============================================
+               ANIMATIONS (Keyframes)
+            ============================================ */
+        @keyframes fadeIn {
+            0%   { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Animation classes */
+        .anim-fadein {
+            animation: fadeIn 1.2s ease-out both;
+        }
+
+        .anim-fadeinup {
+            animation: fadeInUp 1s ease-out both;
+        }
+
+        .anim-fadeinleft {
+            animation: fadeInLeft 0.8s ease-out both;
+        }
+
+        .anim-fadeinright {
+            animation: fadeInRight 0.8s ease-out both;
+        }
+
+        .anim-zoomin {
+            animation: zoomIn 1.2s ease-out both;
+        }
+
+        /* Paused state — элемент удерживается в начальном кадре анимации (opacity: 0) */
+        .anim-paused {
+            animation-play-state: paused !important;
+        }
+
+        /* ============================================
+               LAYOUT UTILITIES
+            ============================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            padding: 20px 20px;
+            background-color: #ffffff;
+        }
+
+        .spacer {
+            padding: 20px 20px;
+            background-color: #ffffff;
+        }
+
+        /* ============================================
+               SECTION 1: HERO
+            ============================================ */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 550px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .hero__bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 40px 20px;
+        }
+
+        .hero__names {
+            font-size: clamp(36px, 8vw, 55px);
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero__subtitle {
+            font-size: clamp(14px, 2.5vw, 24px);
+            font-weight: 300;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .hero__logo {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: auto;
+        }
+
+        .hero__logo img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* ============================================
+               SECTION 3: INVITATION / DATE / VENUE
+            ============================================ */
+        .invitation {
+            position: relative;
+            text-align: center;
+        }
+
+        .invitation__text {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .invitation__decor-line {
+            position: absolute;
+            top: 46px;
+            height: 1px;
+            width: 230px;
+            background-color: #000000;
+        }
+
+        .invitation__decor-line--left {
+            left: 20px;
+        }
+
+        .invitation__decor-line--right {
+            right: 20px;
+        }
+
+        /* Calendar Widget */
+        .calendar-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .calendar-card {
+            display: inline-block;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            min-width: 280px;
+        }
+
+        .calendar-card__month {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .calendar-card__day {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .calendar-card__year {
+            font-size: 20px;
+            font-weight: 300;
+            color: #999;
+        }
+
+        .calendar-card__day-of-week {
+            font-size: 14px;
+            font-weight: 400;
+            color: #888;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+
+        /* Full Month Calendar */
+        .calendar-month {
+            display: inline-block;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 24px 20px;
+            margin-left: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            min-width: 320px;
+        }
+
+        .calendar-month__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .calendar-month__nav {
+            background: none;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 4px 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-family: inherit;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .calendar-month__nav:hover {
+            background: #f5f5f5;
+        }
+
+        .calendar-month__title {
+            font-size: 16px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .calendar-month__grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+
+        .calendar-month__day-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: #999;
+            padding: 6px 4px;
+            text-transform: uppercase;
+        }
+
+        .calendar-month__day {
+            font-size: 14px;
+            font-weight: 400;
+            padding: 8px 4px;
+            border-radius: 6px;
+            cursor: default;
+            transition: background 0.2s;
+        }
+
+        .calendar-month__day--other {
+            color: #ddd;
+        }
+
+        .calendar-month__day--highlight {
+            background-color: #000;
+            color: #fff;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        /* Time Schedule */
+        .schedule {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .schedule__item {
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .schedule__time {
+            font-size: 22px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 4px;
+        }
+
+        .schedule__label {
+            font-size: 14px;
+            font-weight: 400;
+            color: #666;
+        }
+
+        .schedule__divider {
+            width: 1px;
+            background: #ddd;
+            align-self: stretch;
+        }
+
+        /* Venue Info */
+        .venue {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .venue__name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .venue__address {
+            font-size: 16px;
+            font-weight: 400;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .venue__divider {
+            width: 150px;
+            height: 1px;
+            background-color: #000;
+            margin: 30px auto;
+        }
+
+
+        /* ============================================
+               SECTION 9: RSVP FORM
+            ============================================ */
+        .rsvp {
+            text-align: center;
+        }
+
+        .rsvp__heading {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .rsvp__subtitle {
+            font-size: 18px;
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .rsvp__form {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            border-color: #000;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .radio-group input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: #000;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 14px 32px;
+            font-family: 'Montserrat', 'Arial', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+            background-color: #000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.2s;
+            min-height: 48px;
+        }
+
+        .btn-submit:hover {
+            background-color: #333;
+            transform: translateY(-1px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* ============================================
+               SECTION 11: GIFT WISHES
+            ============================================ */
+        .gift {
+            text-align: center;
+            position: relative;
+        }
+
+        .gift__icon {
+            margin: 0 auto 24px;
+            width: 120px;
+            height: 120px;
+        }
+
+        .gift__text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
+        .gift__decor-line {
+            position: absolute;
+            top: 46px;
+            height: 1px;
+            width: 230px;
+            background-color: #000000;
+        }
+
+        .gift__decor-line--left {
+            left: 20px;
+        }
+
+        .gift__decor-line--right {
+            right: 20px;
+        }
+
+        /* ============================================
+               SECTION 13: FOOTER / CLOSING
+            ============================================ */
+        .footer {
+            position: relative;
+            width: 100%;
+            min-height: 550px;
+            background-color: #ffffff;
+            overflow: hidden;
+        }
+
+        .footer__bg {
+            position: absolute;
+            top: 0;
+            left: calc(50% - 600px + 243px);
+            width: 715px;
+            height: 550px;
+            background-color: #000000;
+            border: 5px solid #000000;
+            background-image: url('source-assets/images/tild6537-6232-4665-b935-393764326233_RTG.jpg');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer__deco {
+            position: absolute;
+            width: 200px;
+            height: auto;
+            z-index: 2;
+        }
+
+        .footer__deco--1 {
+            top: 360px;
+            left: 50%;
+            margin-left: -100px;
+        }
+
+        .footer__deco--2 {
+            top: 430px;
+            left: 50%;
+            margin-left: -100px;
+        }
+
+        /* ============================================
+               RESPONSIVE: TABLET (768px)
+            ============================================ */
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 16px 20px;
+            }
+
+            .spacer {
+                padding: 14px 20px;
+            }
+
+            .invitation__decor-line,
+            .gift__decor-line {
+                display: none;
+            }
+
+            .invitation__text {
+                font-size: 16px;
+            }
+
+            .schedule {
+                gap: 20px;
+            }
+
+            .schedule__item {
+                min-width: 100px;
+            }
+
+            .schedule__time {
+                font-size: 18px;
+            }
+
+            .calendar-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .calendar-month {
+                margin-left: 0;
+                min-width: 280px;
+            }
+
+            .calendar-card {
+                min-width: 240px;
+            }
+
+            .rsvp__heading {
+                font-size: 22px;
+            }
+        }
+
+        /* ============================================
+               RESPONSIVE: MOBILE (480px)
+            ============================================ */
+        @media screen and (max-width: 480px) {
+            body {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 14px 16px;
+            }
+
+            .spacer {
+                padding: 10px 16px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+
+            /* Hero */
+            .hero__names {
+                letter-spacing: 4px;
+            }
+
+            .hero__subtitle {
+                letter-spacing: 3px;
+            }
+
+            .hero__logo {
+                width: 140px;
+                bottom: 30px;
+            }
+
+            /* Invitation */
+            .invitation__text {
+                font-size: 14px;
+            }
+
+            .schedule {
+                gap: 16px;
+            }
+
+            .schedule__divider {
+                display: none;
+            }
+
+            .schedule__item {
+                min-width: auto;
+            }
+
+            .calendar-card {
+                min-width: auto;
+                width: 100%;
+                max-width: 280px;
+                padding: 20px;
+            }
+
+            .calendar-card__day {
+                font-size: 56px;
+            }
+
+            .calendar-month {
+                min-width: auto;
+                width: 100%;
+                max-width: 320px;
+                padding: 16px;
+            }
+
+            /* RSVP */
+            .rsvp__subtitle {
+                font-size: 15px;
+            }
+
+            .form-group input[type="text"],
+            .form-group textarea {
+                font-size: 14px;
+                padding: 10px 14px;
+            }
+
+            .radio-group {
+                gap: 16px;
+            }
+
+            .btn-submit {
+                font-size: 14px;
+                padding: 12px 24px;
+                min-height: 44px;
+            }
+
+            /* Gift */
+            .gift__text {
+                font-size: 14px;
+            }
+
+            .gift__icon {
+                width: 80px;
+                height: 80px;
+            }
+
+            /* Footer */
+            .footer {
+                min-height: 250px;
+            }
+
+            .footer__bg {
+                top: 2px;
+                left: calc(50% - 160px + 0px);
+                width: 321px;
+                height: 246px;
+            }
+
+            .footer__deco {
+                width: 85px;
+            }
+
+            .footer__deco--1 {
+                top: 170px;
+                margin-left: -42px;
+            }
+
+            .footer__deco--2 {
+                top: 205px;
+                width: 61px;
+                margin-left: -30px;
+            }
+        }
+
+        /* ============================================
+               RESPONSIVE: VERY SMALL (320px)
+            ============================================ */
+        @media screen and (max-width: 360px) {
+            .calendar-month__day {
+                font-size: 12px;
+                padding: 6px 2px;
+            }
+
+            .calendar-month__day--highlight {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+        }

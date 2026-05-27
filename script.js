@@ -1,0 +1,190 @@
+        (function() {
+            'use strict';
+
+            /* --------------------------------------------------
+               1. INTERSECTION OBSERVER — Scroll Animations
+               -------------------------------------------------- */
+            function initAnimations() {
+                var elements = document.querySelectorAll('.anim-paused');
+
+                if ('IntersectionObserver' in window) {
+                    var observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                // Анимация запускается — убираем paused
+                                entry.target.classList.remove('anim-paused');
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, {
+                        threshold: 0.1,
+                        rootMargin: '0px 0px -50px 0px'
+                    });
+
+                    elements.forEach(function(el) {
+                        observer.observe(el);
+                    });
+                } else {
+                    // Fallback: show all immediately
+                    elements.forEach(function(el) {
+                        el.classList.remove('anim-paused');
+                    });
+                }
+            }
+
+            /* --------------------------------------------------
+               2. CALENDAR WIDGET — August 2026
+               -------------------------------------------------- */
+            function initCalendar() {
+                var calGrid = document.getElementById('calGrid');
+                var calTitle = document.getElementById('calTitle');
+                var calPrev = document.getElementById('calPrev');
+                var calNext = document.getElementById('calNext');
+
+                // Wedding date: August 13, 2026
+                var weddingMonth = 7; // 0-indexed: August = 7
+                var weddingYear = 2026;
+                var weddingDay = 6;
+
+                var currentMonth = weddingMonth;
+                var currentYear = weddingYear;
+
+                var monthNames = [
+                    'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+                    'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'
+                ];
+
+                function renderCalendar(month, year) {
+                    // Clear existing (keep header row)
+                    var dayNames = calGrid.querySelectorAll('.calendar-month__day-name');
+                    calGrid.innerHTML = '';
+                    dayNames.forEach(function(dn) { calGrid.appendChild(dn); });
+
+                    // Set title
+                    calTitle.textContent = monthNames[month] + ' ' + year;
+
+                    // First day of month (0=Sun, 1=Mon, ... 6=Sat)
+                    var firstDay = new Date(year, month, 1).getDay();
+                    // Convert to Mon=0 ... Sun=6
+                    var startOffset = (firstDay === 0) ? 6 : firstDay - 1;
+
+                    // Days in month
+                    var daysInMonth = new Date(year, month + 1, 0).getDate();
+                    // Days in previous month (for leading cells)
+                    var daysInPrev = new Date(year, month, 0).getDate();
+
+                    // Leading cells from previous month
+                    for (var i = startOffset - 1; i >= 0; i--) {
+                        var prevDay = daysInPrev - i;
+                        var span = document.createElement('span');
+                        span.className = 'calendar-month__day calendar-month__day--other';
+                        span.textContent = prevDay;
+                        calGrid.appendChild(span);
+                    }
+
+                    // Current month days
+                    for (var d = 1; d <= daysInMonth; d++) {
+                        var span = document.createElement('span');
+                        span.className = 'calendar-month__day';
+                        span.textContent = d;
+
+                        if (d === weddingDay && month === weddingMonth && year === weddingYear) {
+                            span.className += ' calendar-month__day--highlight';
+                        }
+
+                        calGrid.appendChild(span);
+                    }
+
+                    // Trailing cells for next month
+                    var totalCells = startOffset + daysInMonth;
+                    var remainder = totalCells % 7;
+                    if (remainder > 0) {
+                        var trailing = 7 - remainder;
+                        for (var t = 1; t <= trailing; t++) {
+                            var span = document.createElement('span');
+                            span.className = 'calendar-month__day calendar-month__day--other';
+                            span.textContent = t;
+                            calGrid.appendChild(span);
+                        }
+                    }
+                }
+
+                calPrev.addEventListener('click', function() {
+                    currentMonth--;
+                    if (currentMonth < 0) {
+                        currentMonth = 11;
+                        currentYear--;
+                    }
+                    renderCalendar(currentMonth, currentYear);
+                });
+
+                calNext.addEventListener('click', function() {
+                    currentMonth++;
+                    if (currentMonth > 11) {
+                        currentMonth = 0;
+                        currentYear++;
+                    }
+                    renderCalendar(currentMonth, currentYear);
+                });
+
+                // Initial render
+                renderCalendar(currentMonth, currentYear);
+            }
+
+            /* --------------------------------------------------
+               3. FORM HANDLING
+               -------------------------------------------------- */
+            function initForm() {
+                var form = document.getElementById('rsvpForm');
+                var feedback = document.getElementById('formFeedback');
+
+                if (!form) return;
+
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+
+                    // Collect data
+                    var name = document.getElementById('guestName').value.trim();
+                    var status = form.querySelector('input[name="status"]:checked');
+                    var comment = document.getElementById('guestComment').value.trim();
+
+                    if (!name) {
+                        feedback.textContent = 'Пожалуйста, введите ваше имя.';
+                        feedback.style.display = 'block';
+                        feedback.style.color = '#c00';
+                        return;
+                    }
+
+                    var statusText = status ? (status.value === 'yes' ? 'буду' : 'не смогу') : 'не указано';
+
+                    // Show confirmation
+                    // ФОРМА: В текущей версии данные не отправляются на сервер.
+                    // Для отправки замените action формы на URL вашего обработчика.
+                    feedback.style.color = '#2a7d2a';
+                    feedback.textContent = name + ', спасибо за ответ! Вы (' + statusText + ').';
+                    if (comment) {
+                        feedback.textContent += ' Комментарий получен.';
+                    }
+                    feedback.style.display = 'block';
+
+                    // Reset form after delay
+                    setTimeout(function() {
+                        form.reset();
+                        setTimeout(function() {
+                            feedback.style.display = 'none';
+                        }, 3000);
+                    }, 2000);
+                });
+            }
+
+            /* --------------------------------------------------
+               INIT
+               -------------------------------------------------- */
+            document.addEventListener('DOMContentLoaded', function() {
+                // Hero элементы анимируются автоматически (класс anim-fadein без anim-paused)
+                initAnimations();
+                initCalendar();
+                initForm();
+            });
+
+        })();

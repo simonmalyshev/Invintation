@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Семен & Настя | Свадебное приглашение</title>
+    <meta name="description" content="Свадебное приглашение Семена и Настии. 13 августа 2026 года.">
+    <meta property="og:title" content="Семен & Настя — Свадебное приглашение">
+    <meta property="og:description" content="06 августа 2026 года, Osoba gastronomic panorama">
+    <meta property="og:image" content="source-assets/images/tild3030-6563-4035-b261-646238646232_IMG_4398.JPG">
+    <meta property="og:type" content="website">
+    <meta name="color-scheme" content="only light">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ============================================
+    SECTION 1: HERO / COVER
+    ============================================ -->
+    <section id="hero" class="hero">
+        <img class="hero__bg anim-fadein" style="animation-delay: 0s;"
+            src="source-assets/images/tild3030-6563-4035-b261-646238646232_IMG_4398.JPG"
+            alt="Семен и Настя — совместное фото"
+        >
+        <div class="hero__overlay anim-fadein" style="animation-delay: 0s;">
+            <!-- ТЕКСТ: Измените на свои имена -->
+            <h1 class="hero__names">СЕМЕН & НАСТЯ</h1>
+            <!-- ТЕКСТ: Измените текст приглашения (например, "SAVE THE DATE") -->
+            <p class="hero__subtitle">СВАДЕБНОЕ ПРИГЛАШЕНИЕ</p>
+        </div>
+        <!-- ФОТО: Замените на логотип (белый, прозрачный PNG). Рекомендуемый размер: 511x246 px -->
+        <div class="hero__logo anim-fadein" style="animation-delay: 0.2s;">
+            <img
+                src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png"
+                alt="Декоративный логотип"
+            >
+        </div>
+    </section>
+
+    <!-- ============================================
+    SECTION 2: SPACER
+    ============================================ -->
+    <div class="spacer"></div>
+
+    <!-- ============================================
+    SECTION 3: INVITATION / DATE / VENUE
+    ============================================ -->
+    <section id="invitation" class="section invitation">
+        <div class="container">
+            <!-- ТЕКСТ: Измените текст приглашения -->
+            <p class="invitation__text anim-fadeinup anim-paused" style="animation-delay: 0s;">
+                Один день в этом году станет для нас особенно важным, и мы хотим провести его
+                в кругу близких и друзей! С большим удовольствием приглашаем Вас на нашу
+                свадебную вечеринку, которая состоится:
+            </p>
+
+            <!-- Decorative lines -->
+            <div class="invitation__decor-line invitation__decor-line--left anim-fadeinright anim-paused" style="animation-delay: 0s;"></div>
+            <div class="invitation__decor-line invitation__decor-line--right anim-fadeinleft anim-paused" style="animation-delay: 0s;"></div>
+
+            <!-- Calendar -->
+            <div class="calendar-wrapper">
+                <!-- ТЕКСТ: Измените дату на свою -->
+                <div class="calendar-card anim-fadeinup anim-paused" style="animation-delay: 0.2s;">
+                    <p class="calendar-card__month">АВГУСТА</p>
+                    <p class="calendar-card__day">06</p>
+                    <p class="calendar-card__year">2026</p>
+                    <p class="calendar-card__day-of-week">Четверг</p>
+                </div>
+
+                <!-- Interactive calendar widget -->
+                <div class="calendar-month anim-fadeinup anim-paused" style="animation-delay: 0.3s;">
+                    <div class="calendar-month__header">
+                        <button class="calendar-month__nav" id="calPrev" aria-label="Предыдущий месяц">&larr;</button>
+                        <span class="calendar-month__title" id="calTitle">Август 2026</span>
+                        <button class="calendar-month__nav" id="calNext" aria-label="Следующий месяц">&rarr;</button>
+                    </div>
+                    <div class="calendar-month__grid" id="calGrid">
+                        <span class="calendar-month__day-name">Пн</span>
+                        <span class="calendar-month__day-name">Вт</span>
+                        <span class="calendar-month__day-name">Ср</span>
+                        <span class="calendar-month__day-name">Чт</span>
+                        <span class="calendar-month__day-name">Пт</span>
+                        <span class="calendar-month__day-name">Сб</span>
+                        <span class="calendar-month__day-name">Вс</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Schedule -->
+            <!-- ТЕКСТ: Измените время и названия событий -->
+            <div class="schedule">
+                <div class="schedule__item anim-fadeinup anim-paused" style="animation-delay: 0.1s;">
+                    <p class="schedule__time">15:00</p>
+                    <p class="schedule__label">Сбор гостей</p>
+                </div>
+                <div class="schedule__divider"></div>
+                <div class="schedule__item anim-fadeinup anim-paused" style="animation-delay: 0.2s;">
+                    <p class="schedule__time">15:40</p>
+                    <p class="schedule__label">Церемония</p>
+                </div>
+                <div class="schedule__divider"></div>
+                <div class="schedule__item anim-fadeinup anim-paused" style="animation-delay: 0.3s;">
+                    <p class="schedule__time">17:30</p>
+                    <p class="schedule__label">Банкет</p>
+                </div>
+                <div class="schedule__divider"></div>
+                <div class="schedule__item anim-fadeinup anim-paused" style="animation-delay: 0.4s;">
+                    <p class="schedule__time">22:00</p>
+                    <p class="schedule__label">Окончание</p>
+                </div>
+            </div>
+
+            <!-- Venue -->
+            <!-- ТЕКСТ: Измените название банкетного зала и адрес -->
+            <div class="venue">
+                <div class="venue__divider anim-fadeinright anim-paused" style="animation-delay: 0.2s;"></div>
+                <div class="venue__name anim-fadeinup anim-paused" style="animation-delay: 0.3s;">
+                    Osoba gastronomic panorama
+                </div>
+                <div class="venue__address anim-fadeinup anim-paused" style="animation-delay: 0.4s;">
+                    Санкт-Петербург, Невский проспект 26
+                </div>
+                <div class="venue__divider anim-fadeinleft anim-paused" style="animation-delay: 0.5s;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+    SECTION 4: SPACER
+    ============================================ -->
+    <div class="spacer"></div>
+
+    <!-- ============================================
+    SECTION 9: RSVP / CONFIRMATION FORM
+    ============================================ -->
+    <section id="rsvp" class="section rsvp">
+        <div class="container">
+            <!-- ТЕКСТ: Измените заголовок формы -->
+            <h2 class="rsvp__heading anim-fadeinup anim-paused" style="animation-delay: 0s;">ПОДТВЕРЖДЕНИЕ</h2>
+            <!-- ТЕКСТ: Измените текст приглашения к заполнению формы -->
+            <p class="rsvp__subtitle anim-fadeinup anim-paused" style="animation-delay: 0.1s;">
+                Пожалуйста, подтвердите своё присутствие до 1 августа 2026 года
+            </p>
+
+            <!-- ФОРМА: Для отправки данных на сервер замените action="..." на URL вашего обработчика.
+                 В текущей версии форма не отправляет данные (статический HTML).
+                 Для интеграции с Google Sheets используйте Apps Script URL.
+                 Для отправки на email — укажите action вашего бэкенда. -->
+            <form class="rsvp__form anim-fadeinup anim-paused" style="animation-delay: 0.2s;" action="#" method="post" id="rsvpForm">
+                <!-- ТЕКСТ: Измените label поля "Имя" -->
+                <div class="form-group">
+                    <label for="guestName">Ваше имя</label>
+                    <input type="text" id="guestName" name="name" placeholder="Иван" required>
+                </div>
+
+                <!-- ТЕКСТ: Измените варианты статуса -->
+                <div class="form-group">
+                    <label>Вы сможете присутствовать?</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="status" value="yes" checked>
+                            Я буду
+                        </label>
+                        <label>
+                            <input type="radio" name="status" value="no">
+                            Я не смогу
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ТЕКСТ: Измените placeholder комментария -->
+                <div class="form-group">
+                    <label for="guestComment">Комментарий (необязательно)</label>
+                    <textarea id="guestComment" name="comment" placeholder="Ваши пожелания или вопросы..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Отправить</button>
+                <!-- После отправки форма показывает уведомление (см. JS) -->
+                <p id="formFeedback" style="margin-top:16px; font-size:14px; color:#555; display:none;"></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================
+    SECTION 10: SPACER
+    ============================================ -->
+    <div class="spacer"></div>
+
+    <!-- ============================================
+    SECTION 11: GIFT WISHES
+    ============================================ -->
+    <section id="gift" class="section gift">
+        <div class="container">
+            <!-- ИЗОБРАЖЕНИЕ: Иконка подарка/конверта. Рекомендуемый размер: 150x150 px -->
+            <div class="gift__icon anim-fadeinup anim-paused" style="animation-delay: 0s;">
+                <img
+                    src="source-assets/images/tild3838-3536-4239-a364-613634616663__.png"
+                    alt="Иконка подарка или конверта"
+                    style="width:100%; height:auto;"
+                >
+            </div>
+
+            <div class="gift__decor-line gift__decor-line--left anim-fadeinright anim-paused" style="animation-delay: 0s;"></div>
+            <div class="gift__decor-line gift__decor-line--right anim-fadeinleft anim-paused" style="animation-delay: 0s;"></div>
+
+            <!-- ТЕКСТ: Измените текст пожеланий -->
+            <p class="gift__text anim-fadeinup anim-paused" style="animation-delay: 0.2s;">
+                Самым лучшим подарком для нас будет ваше присутствие, но если вы хотите
+                нас порадовать — мы будем рады конверту с пожеланиями.
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+    SECTION 12: SPACER
+    ============================================ -->
+    <div class="spacer"></div>
+
+    <!-- ============================================
+    SECTION 13: FOOTER / DECORATIVE
+    ============================================ -->
+    <section id="footer" class="footer">
+        <!-- ФОТО: Чёрная плашка с паттерном RTG (ваза/флористика). -->
+        <div class="footer__bg anim-zoomin anim-paused" style="animation-delay: 0s;"
+             data-bg="source-assets/images/tild6537-6232-4665-b935-393764326233_RTG.jpg"></div>
+        <!-- ФОТО: Декоративные элементы поверх фона. Замените src на свои PNG -->
+        <img
+            class="footer__deco footer__deco--1 anim-zoomin anim-paused"
+            style="animation-delay: 0.3s;"
+            src="source-assets/images/tild3238-3535-4631-a362-356463356365_noroot.png"
+            alt="Декоративный элемент"
+        >
+        <img
+            class="footer__deco footer__deco--2 anim-zoomin anim-paused"
+            style="animation-delay: 0.5s;"
+            src="source-assets/images/tild3163-3934-4431-b132-323464366536_noroot.png"
+            alt="Декоративный элемент"
+        >
+    </section>
+
+    <!-- ============================================
+    JAVASCRIPT
+    ============================================ -->
+    <script src="script.js" defer></script>
+</body>
+</html>
