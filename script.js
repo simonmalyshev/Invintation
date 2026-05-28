@@ -132,13 +132,14 @@
             }
 
             /* --------------------------------------------------
-               3. FORM HANDLING — отправка в Google Sheets
+               3. FORM HANDLING — отправка в Telegram
                -------------------------------------------------- */
 
-            // ⚠️ ВСТАВЬТЕ СЮДА URL вашего Google Apps Script веб-приложения.
-            // Инструкция: GOOGLE_SHEETS_SETUP.md (Шаг 3)
-            // ВАЖНО: Используем JSONP (doGet), а не POST (doPost) — Google Script не отдаёт CORS-заголовки
-            var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyPyb3Fw9TKFagF4Sv_XNO10Kibyxa0eiQk8uPvtwnBNuoVUlB8szipWK3AvfG9uqH_/exec';
+            // ⚠️ ВСТАВЬТЕ СЮДА URL вашего Cloudflare Worker.
+            // Инструкция: TELEGRAM_SETUP.md (Шаг 2)
+            // Worker проксирует JSONP-запрос → Telegram Bot API.
+            // Токен бота хранится в переменных окружения Worker-а, не в коде.
+            var TELEGRAM_WORKER_URL = 'https://invintation-rsvp.YOUR_USERNAME.workers.dev';
 
             function initForm() {
                 var form = document.getElementById('rsvpForm');
@@ -162,8 +163,8 @@
                     }
 
                     // Проверка, вставил ли пользователь реальный URL
-                    if (APPS_SCRIPT_URL.indexOf('YOUR_SCRIPT_ID') !== -1) {
-                        feedback.textContent = 'Ошибка: не настроен URL Google Apps Script. См. GOOGLE_SHEETS_SETUP.md';
+                    if (TELEGRAM_WORKER_URL.indexOf('YOUR_USERNAME') !== -1) {
+                        feedback.textContent = 'Ошибка: не настроен URL Cloudflare Worker. См. TELEGRAM_SETUP.md';
                         feedback.style.display = 'block';
                         feedback.style.color = '#c00';
                         return;
@@ -217,7 +218,7 @@
                     // Создаём <script> элемент — это и есть JSONP-запрос
                     var script = document.createElement('script');
                     script.id = callbackName;
-                    script.src = APPS_SCRIPT_URL + '?' + params.toString();
+                    script.src = TELEGRAM_WORKER_URL + '?' + params.toString();
                     document.body.appendChild(script);
                 });
             }

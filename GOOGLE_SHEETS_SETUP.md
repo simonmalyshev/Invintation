@@ -1,4 +1,10 @@
-# Настройка Google Sheets для формы RSVP (JSONP)
+# ❌ УСТАРЕЛО — больше не используется
+
+> **Форма RSVP теперь отправляет данные в Telegram, а не в Google Sheets.**
+> См. [`TELEGRAM_SETUP.md`](TELEGRAM_SETUP.md) для новой инструкции.
+> Этот файл оставлен для истории и может быть удалён.
+
+# (Архив) Настройка Google Sheets для формы RSVP (JSONP)
 
 ## Шаг 1: Создайте Google Sheets таблицу
 

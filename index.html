@@ -147,9 +147,10 @@
                 Пожалуйста, подтвердите своё присутствие до 10 июня 2026 года
             </p>
 
-            <!-- ФОРМА: Данные отправляются через JSONP в Google Sheets (см. GOOGLE_SHEETS_SETUP.md).
-                 Для настройки: создайте Google Sheets → Tools → Script Editor → вставьте код из GOOGLE_SHEETS_SETUP.md,
-                 разверните как Web App, скопируйте URL в script.js (переменная APPS_SCRIPT_URL). -->
+            <!-- ФОРМА: Данные отправляются через JSONP в Telegram (см. TELEGRAM_SETUP.md).
+                 Для настройки: создайте Telegram бота через @BotFather → разверните Cloudflare Worker →
+                 вставьте URL Worker-а в script.js (переменная TELEGRAM_WORKER_URL).
+                 Токен бота хранится в переменных окружения Worker-а, не в коде. -->
             <form class="rsvp__form anim-fadeinup anim-paused" style="animation-delay: 0.2s;" action="#" method="post"
                 id="rsvpForm">
                 <!-- ТЕКСТ: Измените label поля "Имя" -->
