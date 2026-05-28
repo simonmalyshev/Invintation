@@ -139,7 +139,7 @@
             // Инструкция: TELEGRAM_SETUP.md (Шаг 2)
             // Worker проксирует JSONP-запрос → Telegram Bot API.
             // Токен бота хранится в переменных окружения Worker-а, не в коде.
-            var TELEGRAM_WORKER_URL = 'https://invintation-rsvp.YOUR_USERNAME.workers.dev';
+            var TELEGRAM_WORKER_URL = 'https://super-sun-7ddc.semkamal0000.workers.dev/';
 
             function initForm() {
                 var form = document.getElementById('rsvpForm');
