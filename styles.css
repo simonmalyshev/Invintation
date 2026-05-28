@@ -657,8 +657,20 @@
             display: block;
             width: 100%;
             height: auto;
-            max-height: 400px;
-            object-fit: cover;
+        }
+
+        /* Banquet (OSOBA) */
+        .banquet {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .banquet__text {
+            font-size: 18px;
+            font-weight: 300;
+            margin-bottom: 16px;
+            line-height: 1.8;
         }
 
         .venue__divider {
