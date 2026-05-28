@@ -16,7 +16,7 @@
             font-size: 18px;
             line-height: 1.6;
             color: #000000;
-            background-color: #ffffff;
+
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -214,7 +214,6 @@
             height: 100%;
             z-index: 0;
             pointer-events: none;
-            overflow: hidden;
         }
 
         .parallax-layer {
@@ -263,7 +262,6 @@
 
         .section {
             padding: 20px 20px;
-            background-color: #ffffff;
         }
 
         /* Section Headings */
@@ -324,7 +322,7 @@
             position: relative;
             width: 100%;
             overflow: hidden;
-            background-color: #ffffff;
+
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -423,6 +421,8 @@
         .hero__scroll-indicator--hidden {
             opacity: 0;
             pointer-events: none;
+
+
         }
 
         .hero__scroll-text {
@@ -804,7 +804,7 @@
             position: relative;
             width: 100%;
             min-height: 550px;
-            background-color: #ffffff;
+
             overflow: hidden;
         }
 
@@ -814,7 +814,7 @@
             left: calc(50% - 600px + 243px);
             width: 715px;
             height: 550px;
-            background-color: #ffffff;
+
             border: 5px solid #ffffff;
             background-image: url('source-assets/images/tild6537-6232-4665-b935-393764326233_RTG.jpg');
             background-position: center center;

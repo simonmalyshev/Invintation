@@ -299,6 +299,29 @@
                 }
                 spawnPetals('petals0',150,{sizeMin:18,sizeMax:28,durMin:270,durMax:440,darkMin:0.15,darkMax:0.35});
                 spawnPetals('petals1',120,{sizeMin:11,sizeMax:17,durMin:375,durMax:610,darkMin:0.08,darkMax:0.2});
-                spawnPetals('petals2',105,{sizeMin:6,sizeMax:10,durMin:545,durMax:950,darkMin:0.04,darkMax:0.12});
+                spawnPetals('petals2',105,{sizeMin:6,sizeMax:10,durMin:545,durMax:950,darkMin:0.04,darkMax:0.2});
+
+                // smooth scroll-driven parallax via lerp on container
+                var pc = document.querySelector('.parallax-container');
+                if (pc) {
+                    var currentY = 0;
+                    var targetY = 0;
+                    var factor = 0.12;
+
+                    window.addEventListener('scroll', function() {
+                        targetY = window.scrollY * factor;
+                    }, { passive: true });
+
+                    (function pxLoop() {
+                        // lerp toward target — smooth, no jitter
+                        currentY += (targetY - currentY) * 0.06;
+                        if (Math.abs(currentY) > 0.5) {
+                            pc.style.transform = 'translate3d(0, ' + (-currentY) + 'px, 0)';
+                        } else {
+                            pc.style.transform = 'translate3d(0, 0, 0)';
+                        }
+                        requestAnimationFrame(pxLoop);
+                    })();
+                }
             }
         })();
