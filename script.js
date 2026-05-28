@@ -268,6 +268,37 @@
                 initCalendar();
                 initForm();
                 initScrollIndicator();
+                initPetals();
             });
 
+
+            /* --------------------------------------------------
+               5. PETALS BACKGROUND вЂ” teardrop spawner
+               -------------------------------------------------- */
+            function initPetals() {
+                function spawnPetals(containerId, count, cfg) {
+                    var c = document.getElementById(containerId);
+                    for (var i = 0; i < count; i++) {
+                        var el = document.createElement('div'); el.className = 'petal';
+                        var size = cfg.sizeMin + Math.random() * (cfg.sizeMax - cfg.sizeMin);
+                        var w = size * 0.72; var h = size;
+                        el.style.width = w + 'px'; el.style.height = h + 'px';
+                        el.style.left = (Math.random() * 98) + '%';
+                        var dark = cfg.darkMin + Math.random() * (cfg.darkMax - cfg.darkMin);
+                        var inner = document.createElement('span'); inner.className = 'p-inner';
+                        inner.style.cssText = 'width:100%;height:100%;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,'+(dark*0.4)+') 0%,rgba(0,0,0,'+(dark*0.6)+') 40%,rgba(0,0,0,'+dark+') 100%)';
+                        el.appendChild(inner);
+                        var dx1=(Math.random()-0.5)*100; var dx2=(Math.random()-0.5)*130; var dx3=(Math.random()-0.5)*120; var dx4=(Math.random()-0.5)*110; var dx5=(Math.random()-0.5)*80;
+                        el.style.setProperty('--dx1',dx1+'px'); el.style.setProperty('--dx2',dx2+'px'); el.style.setProperty('--dx3',dx3+'px'); el.style.setProperty('--dx4',dx4+'px'); el.style.setProperty('--dx5',dx5+'px');
+                        var r1=(Math.random()-0.5)*360; var r2=(Math.random()-0.5)*720; var r3=(Math.random()-0.5)*1080; var r4=(Math.random()-0.5)*1440; var r5=(Math.random()-0.5)*1800;
+                        el.style.setProperty('--r1',r1+'deg'); el.style.setProperty('--r2',r2+'deg'); el.style.setProperty('--r3',r3+'deg'); el.style.setProperty('--r4',r4+'deg'); el.style.setProperty('--r5',r5+'deg');
+                        var dur=cfg.durMin+Math.random()*(cfg.durMax-cfg.durMin); var delay=Math.random()*cfg.durMax*2;
+                        el.style.setProperty('--dur',dur+'s'); el.style.setProperty('--delay',-delay+'s');
+                        c.appendChild(el);
+                    }
+                }
+                spawnPetals('petals0',150,{sizeMin:18,sizeMax:28,durMin:270,durMax:440,darkMin:0.15,darkMax:0.35});
+                spawnPetals('petals1',120,{sizeMin:11,sizeMax:17,durMin:375,durMax:610,darkMin:0.08,darkMax:0.2});
+                spawnPetals('petals2',105,{sizeMin:6,sizeMax:10,durMin:545,durMax:950,darkMin:0.04,darkMax:0.12});
+            }
         })();

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Фон — Каплевидные лепестки</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; min-height: 100vh; overflow-x: hidden; }
+  body { font-family: 'Georgia', 'Times New Roman', serif; background: #ffffff; color: #555; }
+  .parallax-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; perspective: 1px; overflow-x: hidden; overflow-y: auto; z-index: 0; }
+  .parallax-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; will-change: transform; }
+  .layer-0 { transform: translateZ(0px) scale(1); }
+  .layer-1 { transform: translateZ(-0.5px) scale(1.5); }
+  .layer-2 { transform: translateZ(-1px) scale(2); }
+  .petal { position: absolute; opacity: 0; animation: fall var(--dur) linear var(--delay) infinite; }
+  .petal .p-inner {
+    position: absolute; top: 0; left: 50%;
+    width: 100%; height: 100%;
+    border-radius: 50% 50% 50% 0;
+    transform: translateX(-50%) rotate(45deg);
+  }
+  @keyframes fall {
+    0%   { transform: translateY(-8vh) translateX(0px) rotate(0deg); opacity: 0; }
+    4%   { opacity: 0.7; }
+    20%  { transform: translateY(120vh) translateX(var(--dx1)) rotate(var(--r1)); opacity: 0.55; }
+    40%  { transform: translateY(240vh) translateX(var(--dx2)) rotate(var(--r2)); opacity: 0.45; }
+    60%  { transform: translateY(360vh) translateX(var(--dx3)) rotate(var(--r3)); opacity: 0.4; }
+    80%  { transform: translateY(480vh) translateX(var(--dx4)) rotate(var(--r4)); opacity: 0.35; }
+    96%  { opacity: 0.2; }
+    100% { transform: translateY(600vh) translateX(var(--dx5)) rotate(var(--r5)); opacity: 0; }
+  }
+  .demo-content { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 500vh; padding: 40px 20px; }
+  .demo-card { max-width: 500px; margin: 70vh auto; background: rgba(0,0,0,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 48px 32px; text-align: center; }
+  .demo-card h1 { font-size: 26px; color: #000; margin-bottom: 12px; font-weight: 400; letter-spacing: 2px; }
+  .demo-card p { font-size: 14px; line-height: 1.7; color: rgba(0,0,0,0.6); margin-bottom: 20px; }
+  .demo-card .tag { display: inline-block; padding: 6px 16px; border: 1px solid rgba(0,0,0,0.15); border-radius: 20px; font-size: 11px; color: rgba(0,0,0,0.5); letter-spacing: 1.5px; }
+  .scroll-hint { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); font-size: 12px; color: rgba(0,0,0,0.2); letter-spacing: 2px; z-index: 20; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.6; } }
+</style>
+</head>
+<body>
+<div class="parallax-container">
+  <div class="parallax-layer layer-0" id="petals0"></div>
+  <div class="parallax-layer layer-1" id="petals1"></div>
+  <div class="parallax-layer layer-2" id="petals2"></div>
+  <div class="demo-content">
+    <div class="demo-card"><h1>V2 — Капля</h1><p>Каплевидные лепестки.<br>Острый кончик, округлое основание.</p><div class="tag">💧 капля 💧</div></div>
+    <div class="demo-card"><h1>Форма капли</h1><p>border-radius: 50% 50% 50% 0 + rotate(45deg). Напоминает лепесток вишни или сливы.</p><div class="tag">✦ border-radius ✦</div></div>
+    <div class="demo-card"><h1>Ч/Б стиль</h1><p>Оттенки чёрного на белом фоне. Минималистично и элегантно.</p><div class="tag">❖ монохром ❖</div></div>
+    <div class="demo-card"><h1>600vh высоты</h1><p>375 лепестков падают от -8vh до 600vh.</p><div class="tag">❖ вся страница ❖</div></div>
+  </div>
+</div>
+<div class="scroll-hint">scroll ↓</div>
+<script>
+(function() {
+  function spawnPetals(containerId, count, cfg) {
+    const c = document.getElementById(containerId);
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('div'); el.className = 'petal';
+      const size = cfg.sizeMin + Math.random() * (cfg.sizeMax - cfg.sizeMin);
+      const w = size * 0.72; const h = size;
+      el.style.width = w + 'px'; el.style.height = h + 'px';
+      el.style.left = (Math.random() * 98) + '%';
+      const dark = cfg.darkMin + Math.random() * (cfg.darkMax - cfg.darkMin);
+      const inner = document.createElement('span'); inner.className = 'p-inner';
+      inner.style.cssText = 'width:100%;height:100%;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,'+(dark*0.4)+') 0%,rgba(0,0,0,'+(dark*0.6)+') 40%,rgba(0,0,0,'+dark+') 100%)';
+      el.appendChild(inner);
+      const dx1=(Math.random()-0.5)*100; const dx2=(Math.random()-0.5)*130; const dx3=(Math.random()-0.5)*120; const dx4=(Math.random()-0.5)*110; const dx5=(Math.random()-0.5)*80;
+      el.style.setProperty('--dx1',dx1+'px'); el.style.setProperty('--dx2',dx2+'px'); el.style.setProperty('--dx3',dx3+'px'); el.style.setProperty('--dx4',dx4+'px'); el.style.setProperty('--dx5',dx5+'px');
+      const r1=(Math.random()-0.5)*360; const r2=(Math.random()-0.5)*720; const r3=(Math.random()-0.5)*1080; const r4=(Math.random()-0.5)*1440; const r5=(Math.random()-0.5)*1800;
+      el.style.setProperty('--r1',r1+'deg'); el.style.setProperty('--r2',r2+'deg'); el.style.setProperty('--r3',r3+'deg'); el.style.setProperty('--r4',r4+'deg'); el.style.setProperty('--r5',r5+'deg');
+      const dur=cfg.durMin+Math.random()*(cfg.durMax-cfg.durMin); const delay=Math.random()*cfg.durMax*2;
+      el.style.setProperty('--dur',dur+'s'); el.style.setProperty('--delay',-delay+'s');
+      c.appendChild(el);
+    }
+  }
+  spawnPetals('petals0',150,{sizeMin:18,sizeMax:28,durMin:270,durMax:440,darkMin:0.15,darkMax:0.35});
+  spawnPetals('petals1',120,{sizeMin:11,sizeMax:17,durMin:375,durMax:610,darkMin:0.08,darkMax:0.2});
+  spawnPetals('petals2',105,{sizeMin:6,sizeMax:10,durMin:545,durMax:950,darkMin:0.04,darkMax:0.12});
+})();
+</script>
+</body>
+</html>

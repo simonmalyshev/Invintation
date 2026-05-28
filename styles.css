@@ -201,6 +201,57 @@
             animation-play-state: paused !important;
         }
 
+
+        /* ============================================
+               PARALLAX PETALS BACKGROUND (teardrop)
+               вЂ” falling petal animation behind content
+            ============================================ */
+        .parallax-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .parallax-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .petal {
+            position: absolute;
+            opacity: 0;
+            animation: fall var(--dur) linear var(--delay) infinite;
+        }
+
+        .petal .p-inner {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border-radius: 50% 50% 50% 0;
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        @keyframes fall {
+            0%   { transform: translateY(-8vh) translateX(0px) rotate(0deg); opacity: 0; }
+            4%   { opacity: 0.7; }
+            20%  { transform: translateY(120vh) translateX(var(--dx1)) rotate(var(--r1)); opacity: 0.55; }
+            40%  { transform: translateY(240vh) translateX(var(--dx2)) rotate(var(--r2)); opacity: 0.45; }
+            60%  { transform: translateY(360vh) translateX(var(--dx3)) rotate(var(--r3)); opacity: 0.4; }
+            80%  { transform: translateY(480vh) translateX(var(--dx4)) rotate(var(--r4)); opacity: 0.35; }
+            96%  { opacity: 0.2; }
+            100% { transform: translateY(600vh) translateX(var(--dx5)) rotate(var(--r5)); opacity: 0; }
+        }
+
         /* ============================================
                LAYOUT UTILITIES
             ============================================ */
@@ -594,6 +645,20 @@
             font-weight: 300;
             color: #666;
             line-height: 1.8;
+        }
+
+        .venue__image {
+            margin-bottom: 24px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .venue__image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: cover;
         }
 
         .venue__divider {
