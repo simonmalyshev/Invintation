@@ -142,6 +142,16 @@
             // Токен бота хранится в переменных окружения функции, не в коде.
             var TELEGRAM_WORKER_URL = 'https://functions.yandexcloud.net/d4eeasrjvr6vjid7tkt0';
 
+            // Прогрев Yandex Cloud Function при загрузке страницы
+            // Отправляем ping-запрос, чтобы растормошить функцию после простоя.
+            // К моменту, когда пользователь долистает до формы, холодный старт уже пройден.
+            (function warmupFunction() {
+                var s = document.createElement('script');
+                s.src = TELEGRAM_WORKER_URL + '?ping=1&callback=warmup_cb';
+                window.warmup_cb = function() { delete window.warmup_cb; };
+                document.body.appendChild(s);
+            })();
+
             function initForm() {
                 var form = document.getElementById('rsvpForm');
                 var feedback = document.getElementById('formFeedback');
@@ -274,10 +284,15 @@
 
 
             /* --------------------------------------------------
-               5. PETALS BACKGROUND вЂ” teardrop spawner
+               5. PETALS BACKGROUND — teardrop spawner
                -------------------------------------------------- */
             function initPetals() {
+                // На мобильных устройствах (ширина ≤ 480px) уменьшаем количество лепестков в 3 раза
+                var mobileMultiplier = window.innerWidth <= 480 ? 1/3 : 1;
+
                 function spawnPetals(containerId, count, cfg) {
+                    count = Math.round(count * mobileMultiplier);
+                    if (count < 1) count = 1;
                     var c = document.getElementById(containerId);
                     for (var i = 0; i < count; i++) {
                         var el = document.createElement('div'); el.className = 'petal';
