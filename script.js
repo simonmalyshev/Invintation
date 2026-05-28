@@ -135,11 +135,12 @@
                3. FORM HANDLING — отправка в Telegram
                -------------------------------------------------- */
 
-            // ⚠️ ВСТАВЬТЕ СЮДА URL вашего Cloudflare Worker.
-            // Инструкция: TELEGRAM_SETUP.md (Шаг 2)
-            // Worker проксирует JSONP-запрос → Telegram Bot API.
-            // Токен бота хранится в переменных окружения Worker-а, не в коде.
-            var TELEGRAM_WORKER_URL = 'https://super-sun-7ddc.semkamal0000.workers.dev/';
+            // ⚠️ ВСТАВЬТЕ СЮДА URL вашей Yandex Cloud Function.
+            // Инструкция: YANDEX_CLOUD_SETUP.md (Шаг 2)
+            // Функция проксирует JSONP-запрос → Telegram Bot API.
+            // Cloudflare Worker больше НЕ ИСПОЛЬЗУЕТСЯ — Cloudflare блокируется в РФ.
+            // Токен бота хранится в переменных окружения функции, не в коде.
+            var TELEGRAM_WORKER_URL = 'https://functions.yandexcloud.net/d4eeasrjvr6vjid7tkt0';
 
             function initForm() {
                 var form = document.getElementById('rsvpForm');
@@ -163,8 +164,8 @@
                     }
 
                     // Проверка, вставил ли пользователь реальный URL
-                    if (TELEGRAM_WORKER_URL.indexOf('YOUR_USERNAME') !== -1) {
-                        feedback.textContent = 'Ошибка: не настроен URL Cloudflare Worker. См. TELEGRAM_SETUP.md';
+                    if (TELEGRAM_WORKER_URL.indexOf('ВАШ_ИДЕНТИФИКАТОР') !== -1) {
+                        feedback.textContent = 'Ошибка: не настроен URL Yandex Cloud Function. См. YANDEX_CLOUD_SETUP.md';
                         feedback.style.display = 'block';
                         feedback.style.color = '#c00';
                         return;
