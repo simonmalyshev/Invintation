@@ -979,7 +979,9 @@
             }
 
             .schedule {
+                flex-wrap: wrap;
                 gap: 16px;
+                justify-content: center;
             }
 
             .schedule__divider {
@@ -987,6 +989,7 @@
             }
 
             .schedule__item {
+                width: calc(50% - 8px);
                 min-width: auto;
             }
 
@@ -1046,9 +1049,10 @@
 
             .footer__bg {
                 top: 2px;
-                left: calc(50% - 160px + 0px);
-                width: 321px;
-                height: 246px;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-width: 3px;
             }
 
             .footer__deco {
