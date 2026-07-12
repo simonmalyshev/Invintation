@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f4f1eb">
+    <meta name="color-scheme" content="only light">
+    <meta name="description" content="Выбор горячего блюда к свадьбе Семёна и Анастасии">
+    <title>Выбор горячего | Семён & Анастасия</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="petals" aria-hidden="true">
+        <div class="petals__layer" id="petalsLarge"></div>
+        <div class="petals__layer" id="petalsMedium"></div>
+        <div class="petals__layer" id="petalsSmall"></div>
+    </div>
+
+    <main>
+        <section class="welcome section-shell" aria-labelledby="welcome-title">
+            <div class="ornament-title">
+                <span aria-hidden="true"></span>
+                <h2 id="welcome-title">Дорогие гости!</h2>
+                <span aria-hidden="true"></span>
+            </div>
+
+            <div class="welcome__copy">
+                <p>Чтобы в день свадьбы вам не пришлось долго ждать горячее, ресторан предлагает выбрать блюдо заранее.</p>
+                <p>Пожалуйста, посмотрите меню и отправьте нам свой выбор <strong>до 15 июля 2026 года.</strong></p>
+                <p>Выбор нужен только для первого горячего блюда. В ресторане при желании можно будет заказать что-нибудь дополнительно.</p>
+                <p>Вы также можете выбрать вариант «Определюсь в ресторане», но в таком случае приготовление блюда займёт некоторое время и придётся немного подождать.</p>
+            </div>
+        </section>
+
+        <section class="menu-section section-shell" aria-labelledby="menu-title">
+            <div class="ornament-title ornament-title--compact">
+                <span aria-hidden="true"></span>
+                <h2 id="menu-title">Меню</h2>
+                <span aria-hidden="true"></span>
+            </div>
+
+            <ol class="dish-list">
+                <li>Пшеничная лапша с овощами в соусе наполи</li>
+                <li>Карбонара с беконом</li>
+                <li>Фузилли с красной рыбой и икрой кеты</li>
+                <li>Мальтальяти с томлёной уткой и муссом из пармезана</li>
+                <li>Орзо с белыми грибами и пармезаном</li>
+                <li>Мраморная грудинка с трюфельным пюре</li>
+                <li>Осьминог по-сицилийски с печёным бататом</li>
+                <li>Томлёная утиная ножка с кремом из печёных яблок</li>
+                <li>Форель с пюре из брокколи и ананасовой сальсой</li>
+                <li>Щучьи котлеты с картофельным пюре и трюфельным соусом</li>
+            </ol>
+        </section>
+
+        <section class="choice section-shell" aria-labelledby="choice-title">
+            <div class="ornament-title ornament-title--compact">
+                <span aria-hidden="true"></span>
+                <h2 id="choice-title">Ваш выбор</h2>
+                <span aria-hidden="true"></span>
+            </div>
+            <p class="choice__lead">Добавьте всех членов семьи и выберите по одному варианту для каждого гостя.</p>
+
+            <div class="form-card">
+                <form id="menuForm" novalidate>
+                    <div id="guestList" class="guest-list"></div>
+
+                    <button class="button button--secondary" type="button" id="addGuest">
+                        <span aria-hidden="true">＋</span> Добавить гостя
+                    </button>
+
+                    <p class="form-feedback" id="formFeedback" role="alert" aria-live="polite"></p>
+                    <button class="button button--primary" type="submit" id="submitButton">Отправить выбор</button>
+                </form>
+
+                <div class="success" id="successPanel" hidden>
+                    <div class="success__mark" aria-hidden="true">✓</div>
+                    <h3>Спасибо!</h3>
+                    <p>Мы получили ваш выбор:</p>
+                    <ul id="successList"></ul>
+                    <p class="success__note">Если планы изменятся, заполните форму ещё раз — мы учтём последнее сообщение.</p>
+                    <button class="button button--secondary" type="button" id="editChoice">Изменить выбор</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="menu-footer">
+        <p>До встречи на нашей свадьбе</p>
+    </footer>
+
+    <template id="guestTemplate">
+        <fieldset class="guest-card">
+            <legend>Гость <span class="guest-number"></span></legend>
+            <button class="guest-card__remove" type="button" aria-label="Удалить гостя">×</button>
+            <div class="field">
+                <label>Имя гостя</label>
+                <input class="guest-name" type="text" autocomplete="name" placeholder="Например, Елена" required>
+                <span class="field__error">Пожалуйста, укажите имя.</span>
+            </div>
+            <div class="field">
+                <label>Горячее блюдо</label>
+                <div class="select-wrap">
+                    <select class="guest-dish" required>
+                        <option value="">Выберите вариант</option>
+                    </select>
+                </div>
+                <span class="field__error">Пожалуйста, выберите вариант.</span>
+            </div>
+        </fieldset>
+    </template>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
