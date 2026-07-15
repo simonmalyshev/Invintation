@@ -200,6 +200,26 @@
         });
     }
 
+    function warmupFunction() {
+        if (IS_LOCAL_PREVIEW) return;
+
+        var callbackName = 'menu_warmup_' + Date.now();
+        var script = document.createElement('script');
+        var timeoutId;
+
+        function cleanup() {
+            clearTimeout(timeoutId);
+            delete window[callbackName];
+            if (script.parentNode) script.parentNode.removeChild(script);
+        }
+
+        window[callbackName] = cleanup;
+        script.onerror = cleanup;
+        timeoutId = setTimeout(cleanup, 7000);
+        script.src = TELEGRAM_FUNCTION_URL + '?ping=1&callback=' + callbackName;
+        document.body.appendChild(script);
+    }
+
     addGuestButton.addEventListener('click', function () {
         addGuest(true);
         feedback.textContent = '';
@@ -254,5 +274,6 @@
     });
 
     initPetals();
+    warmupFunction();
     addGuest(false);
 }());
